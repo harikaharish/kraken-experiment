@@ -1,0 +1,11 @@
+
+
+{>"layouts/master" /}
+  {<body}
+      
+        <h2 class="form-success-heading">You are Successfully Registered!!!!!!</h2>
+		
+		<input type='hidden' name='_csrf' value={_csrf} />
+
+{/body}
+

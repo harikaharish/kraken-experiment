@@ -1,0 +1,146 @@
+
+
+{>"layouts/master" /}
+  {<body}
+      <form id="registerForm" class="form-signin" role="form" method="post" action="/registration">
+        <h2 class="form-signin-heading">Please Register</h2>
+		
+		<input type='hidden' name='_csrf' value={_csrf} />
+        <div class="form-group">
+        	<input type="first name" class="form-control" placeholder="{fname}" id="first_name" name="first_name" required autofocus> 
+
+        	<input type="last name" class="form-control" placeholder="{lname}" id="last_name" name="last_name" required autofocus>
+
+        	<input type="email" class="form-control" placeholder="{email}" id="email_text" name="email_text" required autofocus>
+
+        	<input type="password" class="form-control" placeholder="Password" id="password_text" name="password_text" required>
+        </div>	
+        <div class="form-group">
+        	<input type="address" class="form-control" placeholder="{address}" id="address_text" name="address_text" required autofocus>
+        	<input type="phonenumber" class="form-control" placeholder="{phonenumber}" id="phonenumber_text" name="phonenumber_text" required autofocus>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      </form>
+ 
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+
+    <script type="text/javascript" src="../js/jquery2.1.1.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrapValidator.js"></script>
+	<script>
+		$(document).ready(function() {
+		    $('#registerForm').bootstrapValidator({
+		        message: 'This value is not valid',
+		        feedbackIcons: {
+		            valid: 'glyphicon glyphicon-ok',
+		            invalid: 'glyphicon glyphicon-remove',
+		            validating: 'glyphicon glyphicon-refresh'
+		        },
+		        fields: {
+		            first_name: {
+		                message: 'The First Name is not valid',
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The First Name is required and cannot be empty'
+		                    },
+		                    stringLength: {
+		                        min: 2,
+		                        max: 30,
+		                        message: 'The First Name must be more than 2 and less than 30 characters long'
+		                    },
+		                    regexp: {
+		                        regexp: /^[a-zA-Z]+$/,
+		                        message: 'The First Name can only consist of alphabets'
+		                    }
+		                }
+		            },
+
+		            last_name: {
+		                message: 'The Last Name is not valid',
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The Last Name is required and cannot be empty'
+		                    },
+		                    stringLength: {
+		                        min: 2,
+		                        max: 30,
+		                        message: 'The Last Name must be more than 2 and less than 30 characters long'
+		                    },
+		                    regexp: {
+		                        regexp: /^[a-zA-Z]+$/,
+		                        message: 'The Last Name can only consist of alphabets'
+		                    }
+		                }
+		            },
+
+		            email_text: {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The email is required and cannot be empty'
+		                    },
+		                    emailAddress: {
+		                        message: 'The input is not a valid email address'
+		                    },
+		                    regexp: {
+		                        regexp: /[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/,
+		                        message: 'Please enter valid email id '
+		                    }
+		                }
+		            },
+
+		            password_text: {
+                		validators: {
+                    		notEmpty: {
+                        		message: 'The password is required and cannot be empty'
+                    	},
+                    		different: {
+                        		field: 'username',
+                        		message: 'The password cannot be the same as username'
+                    	},
+                    		stringLength: {
+                        		min: 8,
+                        		message: 'The password must have at least 8 characters'
+                    	},
+                    		regexp: {
+		                        regexp: /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/,
+		                        message: 'The Password should contain atleast one lowercase characters, one uppercase characters, one special symbols and one number'
+		                    }
+                		}
+            		},
+
+		            address_text: {
+		                validators: {
+		                    notEmpty: {
+		                        message: 'The Address is required and cannot be empty'
+		                    },
+		                    address_text: {
+		                        message: 'The input is not a valid address'
+		                    }
+		                }
+		            },
+
+		            phonenumber_text: {
+                		validators: {
+                    		notEmpty: {
+                        		message: 'The Phone Number is required and cannot be empty'
+                    	},
+             
+                    		stringLength: {
+                        		min: 10,
+                        		
+                    	},
+                    		regexp: {
+		                        regexp: /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/,
+		                        message: 'Not a valid Phone Number. Phone Number can only consists of Numbers'
+		                    }
+                		}
+            		},
+
+		        }
+		    });
+		});
+	</script>
+
+{/body}
+
